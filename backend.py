@@ -5,8 +5,12 @@ import threading
 import time
 import toml
 import hashlib
+from OpenSSL import SSL
+import wsgiserver
+
 
 PANIC_TIME = 60
+config_data = toml.load("config/config.toml")
 
 app = Flask(__name__)
 # необходимо чтобы не было проблем с CORS
@@ -14,6 +18,7 @@ cors = CORS(
     app,
     resources={r"/*": {"origins": "*", "allow_headers": "*", "expose_headers": "*"}},
 )
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 class StorageCamera:
     def __init__(self):
@@ -75,13 +80,12 @@ def get_state():
 def unlock():
     if camera.state == "locked":
         data = request.get_json()
-        config = toml.load("config/config.toml")
         hashed_pass = hashlib.sha256(data["password"]["password"].encode('UTF-8')).hexdigest()
-        if hashed_pass == config['Door']['password']:
+        if hashed_pass == config_data['Door']['password']:
             camera.open_door()
             camera.unlock()
             message = "Дверь открыта"
-        elif hashed_pass != config['Door']['password']:
+        elif hashed_pass != config_data['Door']['password']:
             message = "Пароль неверный"
     else:
         message = "Дверь уже открыта"
@@ -99,4 +103,11 @@ def lock():
     return jsonify({"state": camera.state, "message": message})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    
+    context = SSL.Context(SSL.SSLv23_METHOD)
+    cert = config_data['Door']['cert_path']
+    key = config_data['Door']['key_path']
+    context = (cert, key)
+    
+    # есть смысл переделать на gunicorn
+    app.run(host='0.0.0.0', ssl_context=context)
