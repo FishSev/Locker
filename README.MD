@@ -12,6 +12,7 @@
     - [App.js](frontend/src/App.js) подключение компонент к роутам
     - [LockerComponent.js](frontend/src/LockerComponent.js) страница камеры хранения
     - [App.css](frontend/src/App.css) стили
+- настроено автообновление страницы раз в минуту
 - доступ к frontend через сайт [madenews.me](https://madenews.me/)
 
 ## Unit-тесты
