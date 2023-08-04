@@ -110,4 +110,4 @@ if __name__ == "__main__":
     context = (cert, key)
     
     # есть смысл переделать на gunicorn
-    app.run(host='0.0.0.0', ssl_context=context)
+    app.run(host='185.154.13.198', ssl_context=context)

@@ -34,4 +34,6 @@ npm cache clean -f && sudo npm install -g n && sudo n latest
 
 npm install react-router-dom@5.2.0
 
+# запуск
+npm run build
 ```
