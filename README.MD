@@ -37,3 +37,17 @@ npm install react-router-dom@5.2.0
 # запуск
 npm run build
 ```
+
+для доступа к нескольким страницам 
+- sudo a2enmod rewrite
+- в файл etc/apache2/apache2.conf внести изменения
+```bash
+# можно отдельно для папки <Directory /var/www/html>
+<Directory /var/www/>
+	Options Indexes FollowSymLinks
+	# заменить AllowOverride None на All
+	AllowOverride All
+	Require all granted
+</Directory>
+```
+- sudo systemctl restart apache2

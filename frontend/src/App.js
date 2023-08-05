@@ -7,6 +7,7 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/" component={LockerComponent}/>
+        <Route path="/locker" component={LockerComponent}/>
       </Switch>
     </BrowserRouter>
   );
