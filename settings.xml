@@ -1,0 +1,29 @@
+<Options>
+<Color
+    HeaderColor= "#EDEDE8"
+    FooterColor= "#EDEDE8"
+    BackgroundColor= "#FFFFFF"
+    FontColor= "#4e3b36"
+    ButtonColor= "#EDEDE8"
+    ButtonOutlineColor= "#4e3b36"
+    ButtonShadowColor= "#000000"
+	InputFieldBlinkColor= "#000000"
+	HelpTitleColor = "#000000"
+	AdsTextSize = "64px"
+/>
+
+<Text
+    PhoneSupport = "+7 919 991 2213"
+    PhoneSupportText = "Телефон поддержки"
+	Currency = "руб."
+	MainScreenAttention = ""
+/>
+
+<Files
+    LogoImage = "logo.png"
+    AddLogoText="text_logo.txt"
+    TextAgreement="agreement.txt"
+    PriceNote="price_note.txt"
+    TextPDAgreement = "personal_data_agreement.txt"
+/>
+</Options>
